@@ -78,9 +78,19 @@ chemical_fl <- filter(strawb, State == 'FLORIDA' &
 chemical_ca <- filter(strawb, State == 'CALIFORNIA' & 
                         Domain != 'ORGANIC STATUS' & 
                         Domain != 'TOTAL')
+grep("TOTAL",
+     chemical_fl$`Domain Category`,
+     ignore.case = T)
+#chemical_fl contains 16 "TOTAL", which should be delete
 unique(chemical_fl[11])
+#contains 119
+grep("TOTAL",
+     chemical_ca$`Domain Category`,
+     ignore.case = T)
+#16
 unique(chemical_ca[11])
-#ans_5 = 142 - 119 = 23
+#142
+#ans_5 = (142-16) - (119-16) = 23
 
 
 
