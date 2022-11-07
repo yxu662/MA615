@@ -53,9 +53,6 @@ lower1 <- 231304956-62110007
 nonorgansales_2016_ca <- filter(strawb, State == 'CALIFORNIA' & 
                                   Year == 2016 & 
                                   Domain != 'ORGANIC STATUS')
-new_non <- filter(nonorgansales_2016_ca, Value != "(NA)" & 
-                    Value != "(D)" & 
-                    Domain != "TOTAL")
 library(gmodels)
 library(Rmisc)
 CI(as.numeric(new_non$Value))
