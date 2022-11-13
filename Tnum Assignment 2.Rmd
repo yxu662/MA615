@@ -1,0 +1,221 @@
+---
+title: "Tnum Assignment 2"
+author: "Group 11"
+date: "2022-11-10"
+output: html_document
+---
+
+```{r}
+library(devtools)
+library(tnum)
+library(tidyverse)
+#devtools::install_github("arazdow/tnum/tnum", force = TRUE)
+tnum.loadLibs()
+tnum.authorize(ip="mssp.truenum.com:8080",creds = "yxu662@bu.edu:cougar")
+```
+
+## Assignment 2
+```{r}
+library(tibble)
+d1 <- tnum.getAllProperties()
+d2 <- tnum.getAllSubjects()
+d3 <- tnum.getAllTags()
+```
+
+
+# Massachusetts population with no health insurance
+```{r}
+x_nhi_mas <- tnum.query("subj:Massachusetts* and prop:population:no_health_insurance and numval:>20000")
+xmas <-  mapply(FUN = tnum.addTag,
+       guid = x_nhi_mas$id,
+       tag = "pop no_health_insurance: large",
+       text = "the population of no helath insurance in Massachusetts")
+tnum.getTagsOfTn(x_nhi_mas[1,]$id)
+kable(x_nhi_mas)
+```
+
+```{r}
+tn1 <- tnum.postStatement(
+  stmt = "The largest number of Massachusetts at Middlesex that not having health insurance is 39401 ",
+  notes = "Our first truenumber"
+)
+```
+
+# Maine population with no health insurance
+```{r}
+x_nhi_mai <- tnum.query("subj:Maine* and prop:population:no_health_insurance and numval:>10000")
+xmai <-  mapply(FUN = tnum.addTag,
+       guid = x_nhi_mai$id,
+       tag = "pop no_health_insurance: large",
+       text = "the population of no helath insurance in Maine")
+tnum.getTagsOfTn(x_nhi_mai[1,]$id)
+kable(x_nhi_mai)
+```
+```{r}
+tn2 <- tnum.postStatement(
+  stmt = "The largest number of Maine at Cumberland that not having health insurance is 16666",
+  notes = "Our second true number"
+  )
+```
+
+# Connecticut population with no health insurance
+```{r}
+x_nhi_con <- tnum.query("subj:Connecticut* and prop:population:no_health_insurance and numval:>10000")
+xcon <-  mapply(FUN = tnum.addTag,
+       guid = x_nhi_mai$id,
+       tag = "pop no_health_insurance: large",
+       text = "the population of no helath insurance in Connecticut")
+tnum.getTagsOfTn(x_nhi_con[1,]$id)
+kable(x_nhi_con)
+```
+```{r}
+tn3 <- tnum.postStatement(
+  stmt = "The largest number of Connecticut at Fairfield that not having health insurance is 78804",
+  notes = "Our third true number"
+  )
+```
+
+# New hampshire population with no health insurance
+```{r}
+x_nhi_new <- tnum.query("subj:New_Hampshire* and prop:population:no_health_insurance and numval:>5000")
+xnew <-  mapply(FUN = tnum.addTag,
+       guid = x_nhi_mai$id,
+       tag = "pop no_health_insurance: large",
+       text = "the population of no helath insurance in New_Hampshire")
+tnum.getTagsOfTn(x_nhi_new[1,]$id)
+kable(x_nhi_new)
+```
+
+```{r}
+tn4 <- tnum.postStatement(
+  stmt = "The largest number of New hampshire at Hillsborough that not having health insurance is 25235",
+  notes = "Our fourth true number"
+  )
+```
+
+# Rhode Island population with no health insurance
+```{r}
+x_nhi_rho <- tnum.query("subj:Rhode_Island* and prop:population:no_health_insurance and numval:>1000")
+xrho <-  mapply(FUN = tnum.addTag,
+       guid = x_nhi_mai$id,
+       tag = "pop no_health_insurance: large",
+       text = "the population of no helath insurance in NRhode_Island")
+tnum.getTagsOfTn(x_nhi_rho[1,]$id)
+kable(x_nhi_rho)
+```
+```{r}
+tn5 <- tnum.postStatement(
+  stmt = "The largest number of Rhode Island at Washington that not having health insurance is 33911",
+  notes = "Our fifth truenumber"
+  )
+```
+
+# New_Hampshire Population
+```{r}
+nh_pop <- tnum.query("subj:New_Hampshire* and prop:population and numval:> 100000")
+nh1 <- mapply(FUN = tnum.addTag,
+       guid = nh_pop$id,
+       tag = "county:large",
+       text = "the large counties in New Hampshire")
+tnum.getTagsOfTn(nh_pop[1,]$id)
+kable(nh_pop)
+
+#Hillsborough 
+```
+
+```{r}
+tn6 <- tnum.postStatement(
+  stmt = "the largest number of New_Hampshire Population at Hillsborough is 413035",
+  notes = "Our sixth truenumber"
+)
+```
+
+# Massachusettes Population
+```{r}
+ma_pop <- tnum.query("subj:Massachusetts* and prop:population and numval:> 700000")
+ma1 <- mapply(FUN = tnum.addTag,
+       guid = ma_pop$id,
+       tag = "county:large",
+       text = "the large counties in Massachusetts")
+tnum.getTagsOfTn(ma_pop[1,]$id)
+kable(ma_pop)
+
+#Middlesex
+```
+
+```{r}
+tn7 <- tnum.postStatement(
+  stmt = "the largest number of Massachusetts Population at Middlesex is 1600842",
+  notes = "Our seventh truenumber"
+)
+```
+
+# Connecticut Population
+
+```{r}
+ct_pop <- tnum.query("subj:Connecticut* and prop:population and numval:> 700000")
+ct_pop1 <- mapply(FUN = tnum.addTag,
+       guid = ct_pop$id,
+       tag = "county:large",
+       text = "the large counties in Connecticut")
+tnum.getTagsOfTn(ct_pop[1,]$id)
+kable(ct_pop)
+
+#Fairfield
+```
+
+```{r}
+tn8 <- tnum.postStatement(
+  stmt = "the largest number of Connecticut Population at Fairfield is 943926",
+  notes = "Our eighth truenumber"
+)
+```
+
+# New_Hampshire masters
+
+```{r}
+nh_master <- tnum.query("subj:New_Hampshire* and prop:population:masters and numval:> 20000")
+nh_master1 <- mapply(FUN = tnum.addTag,
+       guid = nh_master$id,
+       tag = "master:large",
+       text = "the large population of masters in New Hampshire")
+tnum.getTagsOfTn(nh_master[1,]$id)
+kable(nh_master)
+
+#Hillsborough 
+```
+
+```{r}
+tn9 <- tnum.postStatement(
+  stmt = "the largest number of master in New_Hampshire at Hillsborough is 31606",
+  notes = "Our ninth truenumber"
+)
+```
+
+# Massachusetts masters
+
+```{r}
+ma_master <- tnum.query("subj:Massachusetts* and prop:population:masters and numval:> 50000")
+ma_master1 <- mapply(FUN = tnum.addTag,
+       guid = ma_master$id,
+       tag = "master:large",
+       text = "the large population of masters in Massachusetts")
+tnum.getTagsOfTn(ma_master[1,]$id)
+kable(ma_master)
+
+#Middlesex
+```
+
+```{r}
+tn10 <- tnum.postStatement(
+  stmt = "the largest number of master in Massachusetts at Middlesex is 218821",
+  notes = "Our tenth truenumber"
+)
+```
+
+## 10 True Number in One Table
+```{r}
+df <- tnum.jsonArray(list(tn1, tn2, tn3, tn4, tn5, tn6, tn7, tn8, tn9, tn10))
+
+kable(df)
+```

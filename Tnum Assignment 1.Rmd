@@ -1,0 +1,233 @@
+---
+title: "Tnum Assignment 1"
+author: "Group 11"
+date: "2022-11-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(devtools)
+library(tnum)
+library(tidyverse)
+#devtools::install_github("arazdow/tnum/tnum", force = TRUE)
+tnum.loadLibs()
+tnum.authorize(ip="mssp.truenum.com:8080",creds = "yxu662@bu.edu:cougar")
+```
+
+
+### Assignment 1
+
+```{r}
+d1 <- tnum.getAllProperties()
+d2 <- tnum.getAllSubjects()
+d3 <- tnum.getAllTags()
+```
+
+
+## Chapter0
+
+```{r}
+library(tidytext)
+data("stop_words")
+text_ch0 <- tnum.query("subj:Time_Machine:Chapter:0:Sentence:*")
+tidy_word0 <- text_ch0 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word0[1,1]
+text_ch00 <- tnum.query("subj:Time_Machine:Chapter:0:* and stringval:time")
+tnum.graphPathList(text_ch00$subject)
+```
+
+## Chapter 1
+```{r}
+text_ch1 <- tnum.query("subj:Time_Machine:Chapter:1:Sentence:*")
+tidy_word1 <- text_ch1 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word1[1,1]
+text_ch11 <- tnum.query("subj:Time_Machine:Chapter:1:* and stringval:time")
+tnum.graphPathList(text_ch11$subject)
+```
+
+## Chapter 2
+
+```{r}
+text_ch2 <- tnum.query("subj:Time_Machine:Chapter:2:Sentence:*")
+tidy_word2 <- text_ch2 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word2[1,1]
+text_ch22 <- tnum.query("subj:Time_Machine:Chapter:2:* and stringval:traveller")
+tnum.graphPathList(text_ch22$subject)
+```
+
+## Chapter 4
+
+```{r}
+text_ch4 <- tnum.query("subj:Time_Machine:Chapter:4:Sentence:*")
+tidy_word4 <- text_ch4 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word4[1,1]
+text_ch44 <- tnum.query("subj:Time_Machine:Chapter:4:* and stringval:machine")
+tnum.graphPathList(text_ch44$subject)
+```
+
+## Chapter 5
+
+```{r}
+text_ch5 <- tnum.query("subj:Time_Machine:Chapter:5:Sentence:*")
+tidy_word5 <- text_ch5 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word5[1,1]
+text_ch55 <- tnum.query("subj:Time_Machine:Chapter:5:* and stringval:people")
+tnum.graphPathList(text_ch55$subject)
+```
+
+## Chapter 6
+
+```{r}
+text_ch6 <- tnum.query("subj:Time_Machine:Chapter:6:Sentence:*")
+tidy_word6 <- text_ch6 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word6[1,1]
+text_ch66 <- tnum.query("subj:Time_Machine:Chapter:6:* and stringval:time")
+tnum.graphPathList(text_ch66$subject)
+```
+
+## Chapter 7
+
+```{r}
+text_ch7 <- tnum.query("subj:Time_Machine:Chapter:7:Sentence:*")
+tidy_word7 <- text_ch7 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word7[1,1]
+text_ch77 <- tnum.query("subj:Time_Machine:Chapter:7:* and stringval:machine")
+tnum.graphPathList(text_ch77$subject)
+```
+
+## Chapter 8
+
+```{r}
+text_ch8 <- tnum.query("subj:Time_Machine:Chapter:8:Sentence:*")
+tidy_word8 <- text_ch8 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word8[1,1]
+text_ch88 <- tnum.query("subj:Time_Machine:Chapter:8:* and stringval:Weena")
+tnum.graphPathList(text_ch88$subject)
+```
+
+## Chapter 10
+
+```{r}
+text_ch10 <- tnum.query("subj:Time_Machine:Chapter:10:Sentence:*")
+tidy_word10 <- text_ch10 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word10[1,1]
+text_ch1010 <- tnum.query("subj:Time_Machine:Chapter:10:* and stringval:morlocks")
+tnum.graphPathList(text_ch1010$subject)
+```
+
+## Chapter 12
+
+```{r}
+text_ch12 <- tnum.query("subj:Time_Machine:Chapter:12:Sentence:*")
+tidy_word12 <- text_ch12 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word12[1,1]
+text_ch1212 <- tnum.query("subj:Time_Machine:Chapter:12:* and stringval:fire")
+tnum.graphPathList(text_ch1212$subject)
+```
+
+## Chapter 13
+
+```{r}
+text_ch13 <- tnum.query("subj:Time_Machine:Chapter:13:Sentence:*")
+tidy_word13 <- text_ch13 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word13[1,1]
+text_ch1313 <- tnum.query("subj:Time_Machine:Chapter:13:* and stringval:hand")
+tnum.graphPathList(text_ch1313$subject)
+```
+
+## Chapter 15
+
+```{r}
+text_ch15 <- tnum.query("subj:Time_Machine:Chapter:15:Sentence:*")
+tidy_word15 <- text_ch15 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word15[1,1]
+text_ch1515 <- tnum.query("subj:Time_Machine:Chapter:15:* and stringval:laboratory")
+tnum.graphPathList(text_ch1515$subject)
+```
+
+## Chapter 17
+
+```{r}
+text_ch17 <- tnum.query("subj:Time_Machine:Chapter:17:Sentence:*")
+tidy_word17 <- text_ch17 %>%
+  select(id, value) %>%
+  unnest_tokens(word,value) %>%
+  anti_join(stop_words,by = "word") %>%
+  count(word, sort = TRUE)
+tidy_word17[1,1]
+text_ch1717 <- tnum.query("subj:Time_Machine:Chapter:17:* and stringval:time")
+tnum.graphPathList(text_ch1717$subject)
+```
+
+## Words in one data frame
+
+```{r}
+word <- c(text_ch0$subject, text_ch1$subject, text_ch2$subject, text_ch2$subject, text_ch4$subject, text_ch5$subject, text_ch6$subject, text_ch7$subject, text_ch8$subject, text_ch10$subject, text_ch12$subject, text_ch13$subject, text_ch15$subject, text_ch17$subject)
+tnum.graphPathList(text_ch11$subject, text_ch1717$subject)
+tnum.graphPathList(word)
+```
+
+
+```{r}
+data <- data.frame(chapter0 = tidy_word0[1:10,1],chapter1 = tidy_word1[1:10,1], chapter2 = tidy_word2[1:10,1],chapter4 = tidy_word4[1:10,1], chapter5 = tidy_word5[1:10,1],chapter6 = tidy_word6[1:10,1], chapter7 = tidy_word7[1:10,1],chapter8 = tidy_word8[1:10,1], chapter10 = tidy_word10[1:10,1], chapter12 = tidy_word12[1:10,1],chapter13 = tidy_word13[1:10,1], chapter15 = tidy_word15[1:10,1],chapter17 = tidy_word17[1:10,1])
+data
+```
+
+
+
+
+
+
+

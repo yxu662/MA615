@@ -1,0 +1,46 @@
+---
+title: "Tnum assignment"
+author: "Yin Xu"
+date: "2022-11-09"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Assignment 1
+```{r}
+library(tnum)
+library(tidyverse)
+tnum.loadLibs()
+tnum.authorize(ip="mssp.truenum.com:8080",creds = "yxu662@bu.edu:cougar")
+
+tnum.getAllProperties()
+tnum.getAllSubjects()
+tnum.getAllTags()
+```
+
+```{r}
+chpt0 <- tnum.query("subj:Time_Machine:Chapter:0:*")
+chpt1 <- tnum.query("subj:Time_Machine:Chapter:1:*")
+chpt2 <- tnum.query("subj:Time_Machine:Chapter:2:*")
+#chpt3 <- tnum.query("subj:Time_Machine:Chapter:3:*")
+chpt4 <- tnum.query("subj:Time_Machine:Chapter:4:*")
+chpt10 <- tnum.query("subj:Time_Machine:Chapter:10:*")
+#chpt11 <- tnum.query("subj:Time_Machine:Chapter:11:*")
+chpt12 <- tnum.query("subj:Time_Machine:Chapter:12:*")
+chpt13 <- tnum.query("subj:Time_Machine:Chapter:13:*")
+#chpt14 <- tnum.query("subj:Time_Machine:Chapter:14:*")
+chpt15 <- tnum.query("subj:Time_Machine:Chapter:15:*")
+#chpt16 <- tnum.query("subj:Time_Machine:Chapter:16:*")
+chpt17 <- tnum.query("subj:Time_Machine:Chapter:17:*")
+
+ch8_weena <- tnum.query("subj:Time_Machine:Chapter:8:* and stringval:Weena")
+```
+
+
+
+
